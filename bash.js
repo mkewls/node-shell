@@ -1,4 +1,4 @@
-var command = require('./command.js')
+var command = require('./commands.js')
 
 // Output a prompt
 process.stdout.write('prompt > ');
@@ -11,6 +11,11 @@ process.stdin.on('data', function (data) {
   command.userIn(cmd);
 
   // next prompt
-  process.stdout.write('\nprompt > ');
+  var timeOut = setTimeout(function() {
+  	process.stdout.write('\nprompt > ');
+  }, 0);
+  if(cmd === 'ls') {
+  	clearTimeout(timeOut);
+  }
 
 });
